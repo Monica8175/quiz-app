@@ -157,7 +157,8 @@ elif menu == "Quiz":
                 st.metric("Percentage", f"{percent:.2f}%")
 
                 c.execute(
-                    "INSERT INTO results VALUES (?,?,?,?)",
+                    "INSERT INTO results VALUES (?,?,?,?)",git status
+
                     (name, score, total, percent)
                 )
                 conn.commit()
