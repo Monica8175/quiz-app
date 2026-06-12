@@ -1,0 +1,41 @@
+import streamlit as st
+import pandas as pd
+
+st.title("Online Quiz App")
+
+uploaded_file = st.file_uploader(
+    "Upload Quiz Questions CSV",
+    type=["csv"]
+)
+
+if uploaded_file is not None:
+
+    df = pd.read_csv(uploaded_file)
+
+    score = 0
+    user_answers = []
+
+    for index, row in df.iterrows():
+
+        answer = st.radio(
+            row["Question"],
+            [
+                row["Option_A"],
+                row["Option_B"],
+                row["Option_C"],
+                row["Option_D"]
+            ],
+            key=index
+        )
+
+        user_answers.append(answer)
+
+    if st.button("Submit Quiz"):
+
+        for i, row in df.iterrows():
+            if user_answers[i] == row["Correct_Answer"]:
+                score += 1
+
+        st.success(
+            f"Score: {score}/{len(df)}"
+        )
