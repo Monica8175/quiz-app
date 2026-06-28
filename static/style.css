@@ -1,21 +1,4 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-
 body{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
     background:linear-gradient(
         135deg,
         #0f172a,
@@ -24,287 +7,66 @@ body{
     );
 
     color:white;
-
+    font-family:Segoe UI;
 }
-
 
 
 .container{
 
     width:90%;
-
-    max-width:1200px;
-
+    margin:auto;
     text-align:center;
 
 }
 
 
-
-.hero h1{
-
-    font-size:3rem;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.hero p{
-
-    color:#cbd5e1;
-
-    margin-bottom:40px;
-
-}
-
-
-
-/* Upload box */
-
 .upload-card{
 
-    background:rgba(255,255,255,0.08);
+    margin-top:30px;
 
-    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.1);
 
-    border:1px solid rgba(255,255,255,0.2);
-
-    padding:35px;
+    padding:30px;
 
     border-radius:20px;
 
 }
 
 
-
-.upload-area{
-
-    border:2px dashed #60a5fa;
-
-    padding:40px;
-
-    border-radius:15px;
-
-}
-
-
-
-.upload-icon{
-
-    font-size:4rem;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.upload-area h2{
-
-    margin-bottom:10px;
-
-}
-
-
-
-.upload-area p{
-
-    color:#cbd5e1;
-
-}
-
-
-
-.upload-area button{
-
+.generate-btn{
 
     margin-top:20px;
 
-
-    padding:12px 25px;
-
-
-    border:none;
-
-
-    border-radius:10px;
-
-
-    cursor:pointer;
-
-
-    background:#3b82f6;
-
-
-    color:white;
-
-
-    font-size:16px;
-
-}
-
-
-
-.generate-btn{
-
-
-    margin-top:25px;
-
-
-    width:100%;
-
-
     padding:15px;
-
-
-    border:none;
-
-
-    border-radius:12px;
-
 
     background:#22c55e;
 
-
     color:white;
 
+    border:none;
 
-    font-size:18px;
-
-
-    cursor:pointer;
-
+    border-radius:10px;
 
 }
-
-
-
-.generate-btn:hover{
-
-    transform:scale(1.03);
-
-}
-
-
-
-/* Features */
 
 
 .features{
 
+    margin-top:30px;
 
-    margin-top:40px;
-
-
-    display:grid;
-
-
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
+    display:flex;
 
     gap:20px;
 
-
 }
-
 
 
 .feature-card{
 
-
-    background:rgba(255,255,255,0.08);
-
-
-    backdrop-filter:blur(10px);
-
-
-    padding:25px;
-
-
-    border-radius:15px;
-
-
-}
-
-
-
-.feature-card h3{
-
-    margin-bottom:10px;
-
-}
-
-
-
-/* selected file */
-
-
-#fileName{
-
-
-    margin-top:15px;
-
-
-    color:#22c55e;
-
-
-    font-weight:bold;
-
-
-}
-
-
-
-/* Generated quiz */
-
-
-.quiz-container{
-
-
-    margin-top:40px;
-
-
-    background:rgba(255,255,255,0.08);
-
-
-    padding:25px;
-
-
-    border-radius:15px;
-
-
-}
-
-
-
-.question-box{
-
-
-    margin-top:20px;
-
+    background:rgba(255,255,255,0.1);
 
     padding:20px;
 
-
-    background:rgba(255,255,255,0.05);
-
-
-    border-radius:10px;
-
-
-}
-
-
-
-.question-box label{
-
-
-    display:block;
-
-
-    margin:10px;
-
+    border-radius:15px;
 
 }
