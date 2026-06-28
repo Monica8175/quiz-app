@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Quiz Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="hero">
+            <h1>📄 PDF Quiz Generator</h1>
+            <p>Transform your study materials into interactive quizzes instantly.</p>
+        </div>
+
+        <div class="upload-card">
+
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon">📚</div>
+                <h2>Upload Your PDF</h2>
+                <p>Drag & Drop PDF Here</p>
+                <span>or</span>
+
+                <input type="file" id="pdfFile" accept=".pdf" hidden>
+
+                <button onclick="document.getElementById('pdfFile').click()">
+                    Choose PDF
+                </button>
+
+                <p id="fileName"></p>
+            </div>
+
+            <button class="generate-btn">
+                🚀 Generate Quiz
+            </button>
+
+        </div>
+
+        <div class="features">
+
+            <div class="feature-card">
+                <h3>⚡ Fast</h3>
+                <p>Generate quizzes in seconds.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎯 Accurate</h3>
+                <p>Questions extracted from PDF content.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📊 Smart</h3>
+                <p>Track learning with instant results.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
