@@ -1,36 +1,31 @@
 from flask import Flask, render_template, request, jsonify
-import fitz   # PyMuPDF
+from pdf_reader import extract_text_from_pdf
 
 
 app = Flask(__name__)
 
 
-# Open frontend
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
-# Receive PDF
+
 @app.route("/upload", methods=["POST"])
 def upload_pdf():
 
-    pdf_file = request.files["pdf"]
+    pdf = request.files["pdf"]
 
-    # Open PDF
-    document = fitz.open(pdf_file)
 
-    text = ""
-
-    # Extract text from all pages
-    for page in document:
-        text += page.get_text()
+    text = extract_text_from_pdf(pdf)
 
 
     return jsonify({
-        "status": "success",
-        "message": "PDF uploaded successfully ✅",
-        "text": text[:1000]
+
+        "message":"PDF extracted successfully ✅",
+
+        "content": text[:1000]
+
     })
 
 
