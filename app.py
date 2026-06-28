@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
 from pdf_reader import extract_text_from_pdf
-
 from quiz_generator import generate_quiz
 
 
