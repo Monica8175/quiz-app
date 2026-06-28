@@ -1,18 +1,26 @@
 from flask import Flask, render_template, request, jsonify
+
 from pdf_reader import extract_text_from_pdf
+
+from quiz_generator import generate_quiz
+
 
 
 app = Flask(__name__)
 
 
+
 @app.route("/")
 def home():
+
     return render_template("index.html")
+
 
 
 
 @app.route("/upload", methods=["POST"])
 def upload_pdf():
+
 
     pdf = request.files["pdf"]
 
@@ -20,15 +28,21 @@ def upload_pdf():
     text = extract_text_from_pdf(pdf)
 
 
+    quiz = generate_quiz(text)
+
+
+
     return jsonify({
 
-        "message":"PDF extracted successfully ✅",
+        "message":"Quiz generated successfully 🎉",
 
-        "content": text[:1000]
+        "quiz":quiz
 
     })
 
 
 
-if __name__ == "__main__":
+
+if __name__=="__main__":
+
     app.run(debug=True)
