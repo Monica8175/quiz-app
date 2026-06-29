@@ -1,26 +1,43 @@
-from flask import Flask, render_template, request, jsonify
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pdf_reader import extract_text_from_pdf
 from quiz_generator import generate_quiz
+from database import init_db, save_quiz, save_score, get_history
+import io
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
+# Initialize DB on startup
+init_db()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
 def home():
-    return render_template("index.html")
+    return FileResponse("index.html")
 
-@app.route("/upload", methods=["POST"])
-def upload_pdf():
-    if "pdf" not in request.files:
-        return jsonify({"error": "No PDF uploaded"})
-
-    pdf = request.files["pdf"]
-    text = extract_text_from_pdf(pdf)
+@app.post("/upload")
+async def upload_pdf(pdf: UploadFile = File(...)):
+    content = await pdf.read()
+    text = extract_text_from_pdf(io.BytesIO(content))
     quiz = generate_quiz(text)
 
-    return jsonify({
-        "message": "Quiz generated successfully 🎉",
-        "quiz": quiz
-    })
+    # Save quiz to DB
+    quiz_id = save_quiz(pdf.filename, quiz)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    return {"quiz": quiz, "quiz_id": quiz_id}
+
+@app.post("/submit")
+async def submit_score(data: dict):
+    save_score(data["quiz_id"], data["score"])
+    return {"message": "Score saved!"}
+
+@app.get("/history")
+async def history():
+    return get_history()
